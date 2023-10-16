@@ -5,6 +5,23 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+
+private val DarkColorPalette = darkColors(
+    primary = Rojo,
+    primaryVariant = Azul,
+    secondary = Morado
+
+)
+
+private val LightColorPalette = lightColors(
+    primary = Vinotinto,
+    primaryVariant = Uva,
+    secondary = Blueberry
+
+)
+
+/*
 
 private val DarkColorPalette = darkColors(
     primary = Purple200,
@@ -17,6 +34,11 @@ private val LightColorPalette = lightColors(
     primaryVariant = Purple700,
     secondary = Teal200
 
+
+
+
+
+ */
     /* Other default colors to override
     background = Color.White,
     surface = Color.White,
@@ -25,10 +47,12 @@ private val LightColorPalette = lightColors(
     onBackground = Color.Black,
     onSurface = Color.Black,
     */
-)
+
 
 @Composable
-fun MascotaFelizTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+fun MascotaFelizTheme(
+     darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit) {
     val colors = if (darkTheme) {
         DarkColorPalette
     } else {
@@ -38,7 +62,7 @@ fun MascotaFelizTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Comp
     MaterialTheme(
         colors = colors,
         typography = Typography,
-        shapes = Shapes,
+        shapes = Shapes2,
         content = content
     )
 }

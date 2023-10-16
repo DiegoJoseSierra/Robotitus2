@@ -1,15 +1,20 @@
 package com.fggc.MascotaFeliz
 
 
+import android.graphics.drawable.shapes.Shape
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
@@ -18,6 +23,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.PointerIcon.Companion.Text
 import androidx.compose.ui.res.painterResource
@@ -54,23 +60,46 @@ fun Elementos() {
     )
 
     {
-        Image(
-            painter = painterResource(id = R.drawable.imagen),
-            contentDescription = "Robotitus"
+
+        Box(
+            modifier = Modifier
+                .clip(shape= MaterialTheme.shapes.small)
+                .background(MaterialTheme.colors.secondary)
+                .border(4.dp, MaterialTheme.colors.primary)
+
         )
+
+            {
+                Image(
+                    painter = painterResource(id = R.drawable.imagen),
+                    contentDescription = "Robotitus",
+                    modifier = Modifier
+                        .padding((20.dp))
+
+                )
+            }
+
+
+
+
         Text(
             "Mascota Digital",
-            color = Color.Red,
-            fontSize = 30.sp
+            color = MaterialTheme.colors.secondary,
+            style = MaterialTheme.typography.h1,
         )
         Text(
             "Bienvenido, Usuario",
-            color = Color.Red,
+
+            color = MaterialTheme.colors.primary,
+            style = MaterialTheme.typography.body2,
         )
 
         Row {
             OutlinedButton(onClick = { /*TODO*/ }) {
-                Text("Tu Mazcota Digital")
+                Text("Tu Mazcota Digital",
+                    color = MaterialTheme.colors.primary,
+                    style = MaterialTheme.typography.body2,
+                )
             }
                 Spacer(modifier = Modifier.width(10.dp))
             OutlinedButton(onClick = { /*TODO*/ }) {
