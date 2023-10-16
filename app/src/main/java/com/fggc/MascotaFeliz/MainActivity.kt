@@ -1,7 +1,9 @@
 package com.fggc.MascotaFeliz
 
 
+import android.content.Intent
 import android.graphics.drawable.shapes.Shape
+import android.icu.text.LocaleDisplayNames.UiListItem
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,6 +18,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.ListItem
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Surface
@@ -26,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.PointerIcon.Companion.Text
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,6 +40,7 @@ import androidx.compose.ui.unit.sp
 import com.fggc.MascotaFeliz.ui.theme.MascotaFelizTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -50,9 +57,11 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 //zzzzzzzzzzzzzzz
 @Composable
 fun Elementos() {
+    val mContext = LocalContext.current
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -63,21 +72,21 @@ fun Elementos() {
 
         Box(
             modifier = Modifier
-                .clip(shape= MaterialTheme.shapes.small)
+                .clip(shape = MaterialTheme.shapes.small)
                 .background(MaterialTheme.colors.secondary)
                 .border(4.dp, MaterialTheme.colors.primary)
 
         )
 
-            {
-                Image(
-                    painter = painterResource(id = R.drawable.imagen),
-                    contentDescription = "Robotitus",
-                    modifier = Modifier
-                        .padding((20.dp))
+        {
+            Image(
+                painter = painterResource(id = R.drawable.imagen),
+                contentDescription = "Robotitus",
+                modifier = Modifier
+                    .padding((20.dp))
 
-                )
-            }
+            )
+        }
 
 
 
@@ -96,14 +105,23 @@ fun Elementos() {
 
         Row {
             OutlinedButton(onClick = { /*TODO*/ }) {
-                Text("Tu Mazcota Digital",
+                Text(
+                    "Tu Mazcota Digital",
                     color = MaterialTheme.colors.primary,
                     style = MaterialTheme.typography.body2,
                 )
             }
-                Spacer(modifier = Modifier.width(10.dp))
-            OutlinedButton(onClick = { /*TODO*/ }) {
-                Text("Menbresia")
+            Spacer(modifier = Modifier.width(10.dp))
+            OutlinedButton(onClick = {
+                mContext.startActivity(Intent(mContext, ListActivity::class.java))
+            }
+            )
+            {
+                Text(
+                    "Contenidos",
+                    color = MaterialTheme.colors.primary,
+                    style = MaterialTheme.typography.body2
+                )
             }
 
         }
@@ -113,9 +131,7 @@ fun Elementos() {
 }
 
 @Preview(showBackground = true)
-
 @Composable
-
 fun ElementosPreview() {
     MascotaFelizTheme {
         Elementos()
